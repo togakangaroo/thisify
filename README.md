@@ -28,6 +28,8 @@ So how exactly is `this` not a parameter? It is, and if we only ever used the `c
 
     $('li').each(person.sayHi); //fail because `this` is a DOM element each time
 
+[Gary Bernhardt's Wat talk summarize my feelings appropriately](https://www.destroyallsoftware.com/talks/wat)
+
 The rules are not terribly complicated but they *are* terribly unnecessary. `this` is Just. A. Simple. Parameter.
 
 After explaining this to another developer for the 20th time I decided to just do something about it.
