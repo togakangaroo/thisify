@@ -1,0 +1,1 @@
+ mocha .\test\test.coffee --compilers coffee:coffee-script
