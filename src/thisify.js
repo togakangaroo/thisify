@@ -9,12 +9,15 @@
 }(this, function () {
 'use strict'
 
-var slice = Array.prototype.slice;
-
+var  slice = Array.prototype.slice
+    ;
 return thisify;
 
-function thisify(obj) {
-  var key, val;
+function thisify(obj, op) {
+  op || (op = {})
+  var  key, val
+      ,checkForThisUsage = op.noThisCheck ? noop : checkForThisUsageWithToString
+      ;
   if(typeof obj !== 'object')
     return obj;
 
@@ -22,6 +25,8 @@ function thisify(obj) {
     val = obj[key];
     if (typeof val !== 'function') 
       continue;
+
+    checkForThisUsage(val, key, obj);
 
     !function (key, val) {
       return obj[key] = function thisifyFn() {
@@ -35,5 +40,13 @@ function thisify(obj) {
   return obj;
 };
 
+function noop() {}
+function checkForThisUsageWithToString(fn, propName, obj) {
+  if(!/\Wthis/.test(fn.toString()))
+    return;
+  console.log("Testing", propName, "of object", obj);
+  console.log(fn.toString())
+  throw "Detected possible usage of `this`. Thisify shifts usage of `this` to the first parameter, you should use that. To disable this check pass the `noThisCheck` option to thisify."
+}
 }));
 

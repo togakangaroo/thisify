@@ -23,3 +23,6 @@ describe 'thisify method', ->
 	describe 'when instantiated', ->
 		it 'should throw an error if there is a use of `this`', ->
 			(-> thisify (returnThis: -> this)).should.throw()
+
+		it 'should not throw an error if there is no use of `this`', ->
+			(-> thisify (doNothing: ->)).should.not.throw()
