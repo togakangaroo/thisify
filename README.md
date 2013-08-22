@@ -50,5 +50,25 @@ and get the expected behavior eveyr time:
 
     var sayHiToFred = person.sayHi;
     sayHiToFred(); 	            //works
+    $('li').each(person.sayHi); //works just fine
+    person.sayHi();             //works as well
+    person.
 
-    $('li').each(person.sayHi); //fail because `this` is a DOM element each time
+Notice that thisify will rewrite all your functions so that they recieve the object itself as the first parameter
+Now you too, can finally treat `this` as if it was just a regular run-of-the-mill parameter. Hip hip hooray!
+
+[More of my thoughts on this available here](https://github.com/togakangaroo/Blog/blob/master/javascript-on-this-and-new.md)
+
+by the way, thisify will also overwrite your original object so calling thisify will modify an already created object.
+
+# Q & A
+
+Q: Is this a class system?
+
+A: No, I'm still considering whether I should make it one
+
+----------------------
+
+Q: Thisify doesn't cover my particular usage of `this`.
+
+A: I agree, I wrote thisify in two hours, it does not cover all use-cases. Let me know what your use-case is and we can hash out how to extend thisify to cover it.
