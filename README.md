@@ -46,7 +46,7 @@ Thisify is a very simple library that removes the need and want for `this` from 
     	,sayHi:       function(p) { console.log( p.greet("Hi") ) }
     })
     
-and get the expected behavior eveyr time:
+and get the expected behavior every time:
 
     var sayHiToFred = person.sayHi;
     sayHiToFred(); 	            //works
