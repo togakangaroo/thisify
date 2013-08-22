@@ -1,7 +1,25 @@
 require 'should'
+thisify = require '../src/thisify'
 
-describe 'test setup', ->
-	it 'should pass', ->
-		1.should.be.ok
-	it 'should fail', ->
-		1.should.not.be.ok
+
+describe 'thisify method', ->
+	person =  
+		firstName: "Fred"
+		lastName: "Flintstone"
+		getFullName: (p) -> "#{p.firstName} #{p.lastName}"
+		getSelf: -> this
+	thisifiedPerson = null
+	
+	describe 'when used', ->
+		before ->
+			thisifiedPerson = thisify person, noThisCheck: true
+
+		it 'should pass the object itself as the first parameter to all methods', ->
+			thisifiedPerson.getFullName().should.equal "Fred Flintstone"
+
+		# it 'should pass the undefined as `this` to all methods', ->
+		# 	thisifiedPerson.getSelf().should.equal undefined
+
+	describe 'when instantiated', ->
+		it 'should throw an error if there is a use of `this`', ->
+			(-> thisify (returnThis: -> this)).should.throw()
