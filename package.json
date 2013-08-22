@@ -1,0 +1,14 @@
+{
+	"name": "thisify",
+	"version": "0.1.0",
+	"author": "gmauer@gmail.com",
+	"description": "Remove the need to use the `this` keyword. Ever.",
+	"keywords": [
+		"javascript",
+		"syntax"
+	],
+	"devDependencies": {
+		"mocha": "*"
+	},
+	"license": "MIT"
+}
